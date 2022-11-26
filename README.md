@@ -8,6 +8,7 @@
   - 입력
     - [ ] 유명한 영화 하나의 제목을 출력하고, 해당 영화에 대한 평점을 입력하라고 출력한다.
     - [ ] 사용자에게 1~5점 중에 입력받는다. 안봤으면 0 입력.
+    - [ ] 위 두개의 기능을 10번 반복한다.
     - [ ] 장르의 유사정도를 얼마나 중요하게 생각하는지 입력받는다. (1~5점).
 
   - 계산
@@ -16,3 +17,15 @@
 
   - 출력
     - [ ] 계산한 값이 가장 높은 5개의 영화 목록을 출력한다.
+
+  - 적용할 유명한 영화 목록
+  Fight Club
+  Iron Man
+  The Dark Knight
+  Forrest Gump
+  The Matrix
+  Pirates of the Caribbean: The Curse of the Black Pearl
+  Star Wars
+  Twilight
+  Spider-Man 3
+  Titanic
