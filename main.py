@@ -51,12 +51,12 @@ matrix.head(20)
 
 
 
-GENRE_WEIGHT = 0.1
-
 # 5.0 : 어느정도 성공한 영화
 # 10.0 : 꽤 성공한 영화
 # 20.0 : 글로벌 히트작
 PUPULARITY_CUTLINE = 13.5
+
+# 0.0 ~ 10.0 전체 유저 평점의 평균
 VOTE_AVERAGE_CUTLINE = 6.0
 
 
@@ -70,7 +70,7 @@ def pearsonR(s1, s2): # 피어슨 상관관계 계산식
     else:
         return a / (b + 0.0000001)
 
-def recommend(input_movie, matrix, similar_genre=True): # 영화이름, 데이터, 장르를 연관성 점수에 반영할것인지 여부를 입력받는다.
+def recommend(input_movie, matrix, genre_weight): # 영화이름, 데이터, 장르를 연관성 점수에 반영할것인지 여부를 입력받는다.
     input_genres = meta[meta['original_title'] == input_movie]['genres'].iloc(0)[0] # 입력받은 영화의 장르 데이터 변수에 저장
 
     result = []
@@ -90,9 +90,9 @@ def recommend(input_movie, matrix, similar_genre=True): # 영화이름, 데이�
             temp_genres = meta[meta['original_title'] == title]['genres'].iloc(0)[0] # temp_genres에 장르데이터 저장
 
         # 장르 비교
-        if similar_genre and len(input_genres) > 0: # 장르가 같으면 연관성 점수에 추가 점수 부여
+        if len(input_genres) > 0: # 장르가 같으면 연관성 점수에 추가 점수 부여
             same_count = np.sum(np.isin(input_genres, temp_genres))
-            cor += (GENRE_WEIGHT * same_count)
+            cor += (genre_weight * same_count)
 
         # ######################################
         # 줄거리 받아오기
@@ -136,7 +136,7 @@ def input_movies():
     print("#  다음 영화들중에 재미있게 봤거나, 볼 생각이 있는 영화들의 번호를 공백으로 구분하여 입력해주세요.  #")
     print("#####################################################################################################\n")
     print_famous_movies()
-    print("\n입력: ", end="")
+    print("\n입력 : ", end="")
     user_movie_numbers = list(map(int, input().split()))
     return user_movie_numbers
 
@@ -146,13 +146,25 @@ def print_famous_movies():
 		print(f"{index + 1}. {famous_movie_names[index]}")
 
 
+def input_genre_importance():
+    print("\n비슷한 장르로 추천할까요? (Y/N) : ", end="")
+    genre_importance = input()
+    if genre_importance == 'Y':
+        return 0.3
+    if genre_importance == 'N':
+        return 0.1
+    else:
+        return 0.11
+
 user_movie_numbers = input_movies()
+genre_weight = input_genre_importance()
+
 
 recommand_results = []
 print('\n계산 중입니다...')
 for movie_number in user_movie_numbers:
     movie_name = famous_movie_names[movie_number - 1]
-    recommand_results.append(recommend(movie_name, matrix, similar_genre=True))
+    recommand_results.append(recommend(movie_name, matrix, genre_weight))
 
 result = []
 for recommand_result in recommand_results: # recommand_result = 고른 영화 하나에 대한 matrix안의 모든 영화의 연관성 정보
@@ -174,14 +186,9 @@ for recommand_result in recommand_results: # recommand_result = 고른 영화 �
         
 result.sort(key = lambda x : x["score"], reverse=True)
 
-result = result[:6]
+result = result[:5]
 
 
-
-# movie_name = input("재밌게 본 영화의 제목을 입력 하세요 : ")
-# movie_count = int(input("표시할 영화의 개수를 입력 하세요 (1~10) : "))
-
-# recommend_result = (recommend(movie_name, matrix, movie_count, similar_genre=True))
 print(f"\n추천 하는 5개의 영화 목록 입니다.")
 
 
