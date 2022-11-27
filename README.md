@@ -21,14 +21,12 @@
 
   - 예외 처리
     - [ ] 입력받을때, 쉼표를 넣었거나 같은 번호를 여러개 넣어도 정상작동 하도록 처리하기
-  - 적용할 유명한 영화 목록
-    Fight Club
-    Iron Man
-    The Dark Knight
-    Forrest Gump
-    The Matrix
-    Pirates of the Caribbean: The Curse of the Black Pearl
-    Star Wars
-    Twilight
-    Spider-Man 3
-    Titanic
+
+  #### 해야할 일
+
+  - [ ] 리팩터링
+    - [ ] 파일 나누기
+    - [x] 함수 나누기
+    - [ ] 클래스로 묶기
+    - [ ] 상수 정리하기
+  - [ ] 입력 예외 처리
