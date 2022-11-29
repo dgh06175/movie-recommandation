@@ -7,6 +7,7 @@ COLUMN_STR = 'original_title'
 VALUES_STR = 'rating'
 SCORE_STR = 'score'
 
+# Correlation 파일안의 Correlation 클래스를 이용하여 상관관계를 계산하여 상관관계가 높은 5개의 영화를 반환하는 함수
 def calculate_correlation (user_movie_numbers, genre_weight):
     recommand_results = []
     result = []
