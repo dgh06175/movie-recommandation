@@ -5,7 +5,7 @@ from . import Model_constant as STRING
 '''
 Calculate : 유저가 선택한 영화들을 Correlation 클래스로 계산하여 도출한 결과값들로 상관관계가 가장 높게 나온 5개의 영화를 반환하는 함수를 저장한 파일
 
-16줄에 matrix 변수에 평점 데이터를 가져오는 부분을 제외하고 모두 직접 작성했다.
+18줄 matrix 변수에 평점 데이터를 가져오는 줄을 제외하고 모두 직접 작성했다.
 '''
 
 # Correlation 파일안의 Correlation 클래스를 이용하여 상관관계를 계산하여 상관관계가 높은 5개의 영화를 반환하는 함수
