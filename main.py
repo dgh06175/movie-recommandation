@@ -1,7 +1,12 @@
 from view import Output_View as Output
 from view import Input_View as Input
-from model import calculate as ca
+from model import Calculate as ca
 
+'''
+main : 전체 프로그램을 실행하는 메인 함수를 저장한 파일
+
+모두 직접 작성했다.
+'''
 # 전체 프로그램을 실행하는 메인 함수
 def run():
     Output.print_guide() # 초기 화면 출력
